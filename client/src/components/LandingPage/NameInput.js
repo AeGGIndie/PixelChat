@@ -8,6 +8,9 @@ const useStyles = makeStyles({
   input: {
     color: '#000',
   },
+  placeholder: {
+    color: '#3c3c3c',
+  },
 });
 
 
@@ -30,8 +33,8 @@ const FormInput = ({ setUserString }) => {
   const classes = useStyles();
 
   return (
-    <form onSubmit={handleSubmit}> 
-      <TextField value={inputString.value}  onChange={handleChange}  InputProps={{ className: classes.input }} required name="username" label="Username" variant="outlined" margin="normal" fullWidth/>
+    <form onSubmit={handleSubmit} action="POST"> 
+      <TextField value={inputString.value}  onChange={handleChange}  InputProps={{ className: classes.input }} InputLabelProps={{ className: classes.placeholder }} required name="username" label="Username" variant="outlined" margin="normal" fullWidth/>
       <Button type="submit" fullWidth disableElevation color="primary" variant="contained" endIcon={<ArrowForwardIcon />}>
         Continue
       </Button>

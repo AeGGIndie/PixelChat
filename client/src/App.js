@@ -36,8 +36,8 @@ const theme = createTheme({
       paper: 'rgba(88,88,88,0.8)',
     },
     text: {
-      primary: '#ffffff',
-      secondary: '#3c3c3c'
+      primary: 'rgba(255,255,255,0.87)',
+      secondary: 'rgba(255,255,255,0.54)'
     },
     contrastThreshold: 3,
     tonalOffset: 0.2,

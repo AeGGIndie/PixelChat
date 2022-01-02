@@ -19,7 +19,7 @@ const Content = () => {
         ml: '0.75rem',
       }}
     >
-      {!username ? <Landing setUser={setUsername} /> : <div>Done</div>}
+      {!username ? <Landing setUser={setUsername} /> : <div>Design Chat Page</div>}
     </Box>
   );
 };
