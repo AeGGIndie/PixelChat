@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Grid,
+  AppBar,
+  Toolbar,
+  IconButton
 } from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
 import CssBaseline from "@mui/material/CssBaseline";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Content from "./components/Content";
@@ -11,10 +15,10 @@ import Footer from "./components/Footer";
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#4be4c8',
+      main: '#4b67e4',
     },
     secondary: {
-      main: '#4b67e4',
+      main: '#4be4c8',
     },
     tertiary: {
       main: '#7b4be4',
@@ -88,20 +92,39 @@ const theme = createTheme({
 });
 
 const App = () => {
+  const [username, setUsername] = useState('');
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Grid container direction="column">
+        <Grid item>
+          {
+            !username ? null : 
+              <AppBar position="static">
+                <Toolbar>
+                  <IconButton
+                    size="large"
+                    edge="start"
+                    color="inherit"
+                    aria-label="menu"
+                  >
+                    <MenuIcon />
+                  </IconButton>
+                </Toolbar>
+              </AppBar>
+          }
+        </Grid>
         <Grid item container>
           <Grid item xs={1} sm={2} md={3} lg={4} /> 
           <Grid item xs={10} sm={8} md={6} lg={4} >
-            <Content />
+            <Content username={username} setUsername={setUsername} />
           </Grid>
           <Grid item xs={1} sm={2} md={3} lg={4} />
         </Grid>
 
         <Grid item>
-          <Footer />
+          {!username ? <Footer /> : null}
         </Grid>
 
       </Grid>

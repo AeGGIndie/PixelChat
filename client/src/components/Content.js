@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Box,
 } from "@mui/material";
 import Landing from "./LandingPage/Landing";
+import ChatPage from "./ChatPage/ChatPage";
 
-const Content = () => {
-  const [username, setUsername] = useState('');
+const Content = (props) => {
 
   return (
     <Box
@@ -19,7 +19,7 @@ const Content = () => {
         ml: '0.75rem',
       }}
     >
-      {!username ? <Landing setUser={setUsername} /> : <div>Design Chat Page</div>}
+      {!props.username ? <Landing setUser={props.setUsername} /> : <ChatPage />}
     </Box>
   );
 };
