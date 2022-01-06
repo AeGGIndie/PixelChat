@@ -5,8 +5,9 @@ import {
   InputBase,
   IconButton
 } from "@mui/material";
-import { makeStyles, useTheme } from "@mui/styles";
+import { makeStyles } from "@mui/styles";
 import SendIcon from '@mui/icons-material/Send';
+import Message from "./Message";
 
 const useStyles = makeStyles({
   chatBox: {
@@ -20,9 +21,7 @@ const useStyles = makeStyles({
   },
 });
 
-const ChatBox = (props) => {
-  const theme = useTheme();
-
+const ChatBox = () => {
   // Handle Submit 
   const handleSubmit = (event) => {
     console.log('TODO: Send a message');
@@ -37,7 +36,8 @@ const ChatBox = (props) => {
         height: '100%',
         width: '100vw',
       }} className={classes.chatBox} >
-        Design Chat Page
+        {/* Render messages here */}
+        <Message />
       </Box>
       {/* Send Message */}
       <form onSubmit={handleSubmit}>
@@ -49,9 +49,12 @@ const ChatBox = (props) => {
           <InputBase sx={{
             ml: 2,
           }}
+          name="message"
           size="medium"
           placeholder="Message"
           fullWidth
+          multiline
+          maxRows={20}
           />
           <IconButton type="submit" color='secondary' size='large'>
             <SendIcon/>

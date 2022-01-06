@@ -16,7 +16,7 @@ const Header = () => {
         alignItems: 'center',
         justifyContent: 'center',
       }}>
-      <Typography variant="h4" fontFamily={theme.typography['fontFamily']} >PixelChat</Typography>
+      <Typography variant="h4" fontFamily={theme.typography['fontFamily']} fontWeight={theme.typography.fontWeightBold} >PixelChat</Typography>
     </Box>
   );
 };
