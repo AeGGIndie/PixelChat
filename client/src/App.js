@@ -1,15 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import CssBaseline from "@mui/material/CssBaseline";
 import Theme from "./components/Theme";
 import PageLayout from "./components/PageLayout";
+import UsernameProvider from "./components/UsernameProvider";
 
 const App = () => {
-  const [username, setUsername] = useState('');
-
   return (
     <Theme>
       <CssBaseline />
-      <PageLayout />
+      <UsernameProvider>
+        <PageLayout />
+      </UsernameProvider>
     </Theme>
   );
 };

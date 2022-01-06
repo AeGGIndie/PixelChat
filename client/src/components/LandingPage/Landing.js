@@ -1,13 +1,13 @@
 import Header from "./Header";
 import NameInput from "./NameInput";
 
-const Landing = (props) => {
+const Landing = () => {
   return (
     <>
       <Header />
-      <NameInput setUser={props.setUser} />
+      <NameInput />
     </>
   );
-}
+};
 
 export default Landing;
