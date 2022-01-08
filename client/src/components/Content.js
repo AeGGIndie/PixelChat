@@ -2,7 +2,7 @@ import React from "react";
 import { Box } from "@mui/material";
 import Landing from "./LandingPage/Landing";
 import ChatPage from "./ChatPage/ChatPage";
-import { useUsername } from "./UsernameProvider";
+import { useUsername } from "./utils/UsernameProvider";
 
 const Content = () => {
   const { username } = useUsername();

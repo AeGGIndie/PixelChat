@@ -2,7 +2,7 @@ import { useState } from "react";
 import UsernameField from "./UsernameField";
 import { Button } from "@mui/material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import { useUsername } from "../UsernameProvider";
+import { useUsername } from "../utils/UsernameProvider";
 
 const FormInput = () => {
   const { setUsername } = useUsername();

@@ -1,4 +1,4 @@
-import { useUsername } from "./UsernameProvider";
+import { useUsername } from "./utils/UsernameProvider";
 import { Grid } from "@mui/material";
 import BackNavigationBar from "./ChatPage/BackNavigationBar";
 import Content from "./Content";
