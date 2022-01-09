@@ -1,34 +1,48 @@
-import React, { useEffect, useState } from "react";
-import { Box, Paper, InputBase, IconButton } from "@mui/material";
+import React, { useState } from "react";
+import { Box, Paper, InputBase, IconButton, Grid } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import SendIcon from "@mui/icons-material/Send";
 import Message from "./Message";
+import { useUsername } from "../utils/UsernameProvider";
 import { useSocket } from "../utils/SocketProvider";
 
-const messages = [
+const sampleMessages = [
   {
     user: "Jason",
-    message: {
-      content: "Hello World!",
-      createdAt: "TODO: Date Object",
-    },
+    content: "Hello World!",
+    createdAt: "TODO: Date Object",
     userID: "7fhed32",
   },
   {
     user: "Kyle",
-    message: {
-      content: "But the world is empty ;-; who're you talking to brother.",
-      createdAt: "TODO: Date Object",
-    },
+    content: "But the world is empty ;-; who're you talking to brother.",
+    createdAt: "TODO: Date Object",
     userID: "09kdo9ac2",
   },
   {
     user: "Steven",
-    message: {
-      content:
-        "Semen is an interesting phenomeneon to which that cannot be compreheneded by most humans. Thus forth, ought to be impossible to swallow such sweet delicacy.",
-      createdAt: "TODO: Date Object",
-    },
+    content:
+      "Semen is an interesting phenomeneon to which that cannot be compreheneded by most humans. Thus forth, ought to be impossible to swallow such sweet delicacy.",
+    createdAt: "TODO: Date Object",
+    userID: "2918jmm,",
+  },
+  {
+    user: "Jason",
+    content: "Hello World!",
+    createdAt: "TODO: Date Object",
+    userID: "7fhed32",
+  },
+  {
+    user: "Kyle",
+    content: "But the world is empty ;-; who're you talking to brother.",
+    createdAt: "TODO: Date Object",
+    userID: "09kdo9ac2",
+  },
+  {
+    user: "Steven",
+    content:
+      "Semen is an interesting phenomeneon to which that cannot be compreheneded by most humans. Thus forth, ought to be impossible to swallow such sweet delicacy.",
+    createdAt: "TODO: Date Object",
     userID: "2918jmm,",
   },
 ];
@@ -47,8 +61,10 @@ const useStyles = makeStyles({
 
 const ChatBox = () => {
   const [message, setMessage] = useState("");
+  const [messages, setMessages] = useState(sampleMessages);
   const classes = useStyles();
   const { socket } = useSocket();
+  const currentUser = useUsername().username;
 
   // Handle Change for Message
   const handleChange = (event) => {
@@ -58,6 +74,14 @@ const ChatBox = () => {
   // Handle Submit
   const handleSubmit = (event) => {
     socket.emit("MESSAGE_SEND", message);
+    const newMessage = {
+      user: currentUser,
+      content: message,
+      createdAt: Date.now(),
+      userID: "TODO: Generate unique ID's",
+    };
+    sampleMessages.push(newMessage);
+    setMessages(sampleMessages);
     setMessage("");
     event.preventDefault();
   };
@@ -73,6 +97,29 @@ const ChatBox = () => {
         className={classes.chatBox}
       >
         {/* Render messages here */}
+        <Grid container>
+          {messages.map((msg, index) => {
+            return (
+              <>
+                <Grid item xs={0.5} />
+                <Grid
+                  item
+                  container
+                  xs={11}
+                  sx={{
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent:
+                      currentUser === msg.user ? "flex-end" : "flex-start",
+                  }}
+                >
+                  <Message message={msg} />
+                </Grid>
+                <Grid item xs={0.5} />
+              </>
+            );
+          })}
+        </Grid>
       </Box>
       {/* Send Message */}
       <form onSubmit={handleSubmit}>
